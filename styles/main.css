@@ -2,17 +2,40 @@
 
 body {
     font-family: Poppins;
+    box-sizing: border-box;
 }
 
 h1 {
-
+    text-align: center;
+    font-size: 3rem;
+    margin: 3rem 0 5rem 0;
 }
 
 form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    height: 90vh;
 }
 
+label {
+    font-size: 1.5rem;
+    padding-bottom: 1rem;
+}
+
+textarea {
+    height: 6rem;
+    width: 20rem;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    border-radius: 10px;
+}
+
+select {
+   height: 3rem;
+   width: 17rem;
+   font-size: 1.5rem; 
+}
+
+input {
+    margin-top: 1rem;
+}
