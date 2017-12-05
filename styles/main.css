@@ -9,6 +9,12 @@ h1 {
     text-align: center;
     font-size: 3rem;
     margin: 3rem 0;
+    color: #2c4d5d;
+}
+
+a {
+    text-decoration: none;
+    color: black;
 }
 
 form {
@@ -43,7 +49,7 @@ input {
     margin-top: 1rem;
     padding: .5rem 1rem;
     font-size: 1.5rem;
-    background: dimgray;
+    background: #2c4d5d;
     color: white;
 }
 

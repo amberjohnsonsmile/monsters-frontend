@@ -24,7 +24,7 @@ document.querySelector("form").addEventListener("submit", event => {
     addImage();
     document.querySelector("textarea").value = "";
     document.querySelector("label").textContent = "don't believe everything your monsters tell you";
-    document.querySelector("label").style.color = "green";
+    document.querySelector("label").style.color = "#23e393";
 });
 
 function appendOptions(responseObject) {
