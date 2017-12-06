@@ -11,13 +11,13 @@ document.querySelector("form").addEventListener("submit", event => {
     event.preventDefault();
     let input = document.querySelector("textarea").value;
     let monsterChoice = document.querySelector("select").value;
-    if (monsterChoice == "slithery") {
+    if (monsterChoice === "slithery") {
         input = removeVowels(input);
         document.querySelector("p").textContent = input;
-    } else if (monsterChoice == "scaly") {
+    } else if (monsterChoice === "scaly") {
         input = backwards(input);
         document.querySelector("p").textContent = input;
-    } else if (monsterChoice == "electric") {
+    } else if (monsterChoice === "electric") {
         input = hackerSpeak(input);
         document.querySelector("p").textContent = input;
     }
@@ -27,6 +27,14 @@ document.querySelector("form").addEventListener("submit", event => {
     document.querySelector("label").style.color = "#23e393";
 });
 
+// "add monster" as <option> in menu?
+    // click on it and two fields come up, ask for URL and monster name?
+document.querySelector("select").addEventListener("change", event => {
+    if (event.target.value === "add your own...") {
+        alert("Add your own monster!");
+    }
+});
+
 function appendOptions(responseObject) {
     responseObject.combined.map(item => {
         let option = document.createElement("option");
@@ -34,6 +42,15 @@ function appendOptions(responseObject) {
         option.appendChild(text);
         document.querySelector("select").appendChild(option);
     });
+    appendAddOption();
+}
+
+// create "add your own..." dropdown option
+function appendAddOption() {
+    let option = document.createElement("option");
+    let text = document.createTextNode("add your own...");
+    option.appendChild(text);
+    document.querySelector("select").appendChild(option);
 }
 
 function addImage() {

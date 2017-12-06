@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 body {
-    font-family: Poppins;
+    font-family: Poppins, sans-serif;
     box-sizing: border-box;
 }
 
@@ -37,10 +37,22 @@ textarea {
     border-radius: 10px;
 }
 
+textarea:focus {
+    outline: none;
+    border: 1px solid #23e393;
+    box-shadow: 0 0 10px #23e393;
+}
+
 select {
    height: 3rem;
    width: 17rem;
    font-size: 1.5rem; 
+}
+
+select:focus {
+    outline: none;
+    border: 1px solid #23e393;
+    box-shadow: 0 0 10px #23e393;
 }
 
 input {
@@ -51,6 +63,12 @@ input {
     font-size: 1.5rem;
     background: #2c4d5d;
     color: white;
+}
+
+input:focus {
+    outline: none;
+    border: 1px solid #23e393;
+    box-shadow: 0 0 10px #23e393;
 }
 
 .garble {
