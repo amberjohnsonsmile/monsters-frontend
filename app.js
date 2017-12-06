@@ -1,3 +1,5 @@
+// on either submit add display:none to .add?
+
 const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
 
 fetch(apiURL)
@@ -7,7 +9,7 @@ fetch(apiURL)
         appendOptions(response);
     });
 
-document.querySelector("form").addEventListener("submit", event => {
+document.querySelector(".fears").addEventListener("submit", event => {
     event.preventDefault();
     let input = document.querySelector("textarea").value;
     let monsterChoice = document.querySelector("select").value;
@@ -94,18 +96,12 @@ function hackerSpeak(string) {
             newString += "0";
         } else if (string[i] === "i") {
             newString += "1";
-        } else if (string[i] === "z") {
-            newString += "2";
         } else if (string[i] === "e") {
             newString += "3";
         } else if (string[i] === "a") {
             newString += "4";
         } else if (string[i] === "s") {
             newString += "5";
-        } else if (string[i] === "b") {
-            newString += "6";
-        } else if (string[i] === "g") {
-            newString += "9";
         } else {
             newString += string[i];
         }

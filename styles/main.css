@@ -17,13 +17,13 @@ a {
     color: black;
 }
 
-form {
+.fears {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-label {
+.fears label {
     font-size: 1.5rem;
     padding-bottom: 1rem;
 }
@@ -55,7 +55,7 @@ select:focus {
     box-shadow: 0 0 10px #23e393;
 }
 
-input {
+.fears input {
     border: none;
     border-radius: 10px;
     margin-top: 1rem;
@@ -65,10 +65,34 @@ input {
     color: white;
 }
 
-input:focus {
+.fears input:focus {
     outline: none;
     border: 1px solid #23e393;
     box-shadow: 0 0 10px #23e393;
+}
+
+.add {
+    text-align: center;
+    margin: 2rem;
+    font-size: 1.5rem;
+}
+
+.add input {
+    height: 1.5rem;
+    width: 10rem;
+    margin-right: 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+}
+
+.add-button {
+    border: none;
+    border-radius: 10px;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    font-size: 1.5rem;
+    background: #2c4d5d;
+    color: white;
 }
 
 .garble {
