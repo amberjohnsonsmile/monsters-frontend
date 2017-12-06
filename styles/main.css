@@ -72,8 +72,9 @@ select:focus {
 }
 
 .add {
+    display: none;
     text-align: center;
-    margin: 2rem;
+    margin-top: 5rem;
     font-size: 1.5rem;
 }
 
@@ -85,12 +86,18 @@ select:focus {
     font-size: 1rem;
 }
 
-.add-button {
+.add input:focus {
+    outline: none;
+    border: 1px solid #23e393;
+    box-shadow: 0 0 10px #23e393;
+}
+
+#add-button {
+    height: 2rem;
+    width: 3rem;
     border: none;
-    border-radius: 10px;
-    margin-top: 1rem;
-    padding: .5rem 1rem;
-    font-size: 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
     background: #2c4d5d;
     color: white;
 }

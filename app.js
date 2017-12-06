@@ -1,13 +1,15 @@
-// on either submit add display:none to .add?
-
 const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
 
+function fetchMonsters() {
 fetch(apiURL)
     .then(response => response.json())
     .then(response => {
         monstersArray = response.combined;
         appendOptions(response);
     });
+}
+
+fetchMonsters();
 
 document.querySelector(".fears").addEventListener("submit", event => {
     event.preventDefault();
@@ -22,6 +24,9 @@ document.querySelector(".fears").addEventListener("submit", event => {
     } else if (monsterChoice === "electric") {
         input = hackerSpeak(input);
         document.querySelector("p").textContent = input;
+    } else {
+        input = replaceWithR(input);
+        document.querySelector("p").textContent = input;
     }
     addImage();
     document.querySelector("textarea").value = "";
@@ -29,13 +34,48 @@ document.querySelector(".fears").addEventListener("submit", event => {
     document.querySelector("label").style.color = "#23e393";
 });
 
-// "add monster" as <option> in menu?
-    // click on it and two fields come up, ask for URL and monster name?
 document.querySelector("select").addEventListener("change", event => {
     if (event.target.value === "add your own...") {
-        alert("Add your own monster!");
+        document.querySelector("img").src = "";
+        document.querySelector("img").alt = "";
+        document.querySelector("p").textContent = "";
+        document.querySelector(".add").style.display = "block";
+    } else {
+        document.querySelector(".add").style.display = "none";
     }
 });
+
+let counter = 3;
+
+document.querySelector(".add").addEventListener("submit", event => {
+    event.preventDefault();
+    document.querySelector(".add").style.display = "none";
+    const monsterData = new FormData(event.target);
+    counter++;
+    addMonster({
+        combined: {
+            id: counter,
+            type: monsterData.get("name"),
+            image_url: monsterData.get("url"),
+        }
+    });
+    document.querySelectorAll(".add input")[0].value = "";
+    document.querySelectorAll(".add input")[1].value = "";
+});
+
+function addMonster(monster) {
+    fetch(apiURL, {
+        method: "POST",
+        body: JSON.stringify(monster),
+        headers: new Headers ({
+            "Content-Type": "application/json"
+        })
+    })
+        .then(response => response.json())
+        .then(resetOptions)
+        .then(fetchMonsters)
+        .catch(console.error);
+}
 
 function appendOptions(responseObject) {
     responseObject.combined.map(item => {
@@ -47,7 +87,13 @@ function appendOptions(responseObject) {
     appendAddOption();
 }
 
-// create "add your own..." dropdown option
+function resetOptions() {
+    let options = document.querySelectorAll("option");
+    for (i = 1; i < options.length; i++) {
+        options[i].remove();
+    }
+}
+
 function appendAddOption() {
     let option = document.createElement("option");
     let text = document.createTextNode("add your own...");
@@ -64,12 +110,10 @@ function addImage() {
     });
 }
 
-// functions for word manipulation
-
 function backwards(string) {
     let wordArray = string.split(" ");
     for (i = 0; i < wordArray.length; i++) {
-        if (i % 3 === 0) {
+        if (i % 2 === 0) {
             wordArray[i] = wordArray[i].split("").reverse().join("");
         }
     }
@@ -104,6 +148,19 @@ function hackerSpeak(string) {
             newString += "5";
         } else {
             newString += string[i];
+        }
+    }
+    return newString;
+}
+
+function replaceWithR(string) {
+    string = string.toUpperCase();
+    let newString = "";
+    for (i = 0; i < string.length; i++) {
+        if (string[i] !== "A" && string[i] !== "E" && string[i] !== "I" && string[i] !== "O" && string[i] !== "U") {
+            newString += string[i];
+        } else {
+            newString += "R";
         }
     }
     return newString;
