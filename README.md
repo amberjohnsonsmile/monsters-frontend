@@ -1,4 +1,4 @@
-## Monsters
+## Monsters - frontend
 
 The Monsters app takes in a negative thought or fear and gives it a personality. When your monster says your thought back to you, it's easy to see that monsters can't always be trusted.
 
