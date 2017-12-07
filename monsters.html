@@ -10,7 +10,7 @@
         <a href="index.html"><h1>monsters</h1></a>
         <form class="fears">
             <label for="phrase">enter a negative thought or fear about yourself</label>
-            <textarea name="phrase"></textarea>
+            <textarea id="phrase" name="phrase"></textarea>
             <select name="type">
                 <option selected>choose your monster</option>
             </select>
@@ -18,15 +18,15 @@
         </form>
         <form class="add">
             <label for="name">monster name</label>
-            <input name="name" type="text">
+            <input name="name" id="name" type="text">
             <label for="url">image url</label>
-            <input name="url" type="text">
+            <input name="url" id="url" type="text">
             <input id="add-button" type="submit" value="add">
         </form>
         <div class="garble">
             <img src="#" alt="monster">
             <p></p>
         </div>
-        <script src="app.js" type="text/javascript"></script>
+        <script src="app.js"></script>
     </body>
 </html>

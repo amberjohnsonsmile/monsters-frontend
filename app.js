@@ -1,4 +1,5 @@
-const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
+//const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
+const apiURL = "http://localhost:3000/combined"
 
 function fetchMonsters() {
 fetch(apiURL)
