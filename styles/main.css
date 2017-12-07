@@ -29,10 +29,11 @@ a {
 }
 
 textarea {
-    height: 1.5rem;
+    height: 2rem;
     width: 35rem;
     margin-bottom: 1rem;
     padding: 1rem;
+    font-family: Poppins, sans-serif;
     font-size: 1.5rem;
     border-radius: 10px;
 }
