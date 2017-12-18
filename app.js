@@ -1,12 +1,13 @@
-const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
+//const apiURL = "https://damp-headland-17256.herokuapp.com/combined";
+const apiURL = "http://localhost:3000/combined";
 
 function fetchMonsters() {
-fetch(apiURL)
-    .then(response => response.json())
-    .then(response => {
-        monstersArray = response.combined;
-        appendOptions(response);
-    });
+    fetch(apiURL)
+        .then(response => response.json())
+        .then(response => {
+            monstersArray = response.combined;
+            appendOptions(response);
+        });
 }
 
 fetchMonsters();
@@ -15,19 +16,21 @@ document.querySelector(".fears").addEventListener("submit", event => {
     event.preventDefault();
     let input = document.querySelector("textarea").value;
     let monsterChoice = document.querySelector("select").value;
-    if (monsterChoice === "slithery") {
-        input = removeVowels(input);
-        document.querySelector("p").textContent = input;
-    } else if (monsterChoice === "scaly") {
-        input = backwards(input);
-        document.querySelector("p").textContent = input;
-    } else if (monsterChoice === "electric") {
-        input = hackerSpeak(input);
-        document.querySelector("p").textContent = input;
-    } else {
-        input = replaceWithR(input);
-        document.querySelector("p").textContent = input;
+    switch (monsterChoice) {
+        case "scaly":
+            input = backwards(input);
+            break;
+        case "slithery":
+            input = removeVowels(input);
+            break;
+        case "electric":
+            input = hackerSpeak(input);
+            break;
+        default:
+            input = replaceWithR(input);
+            break;
     }
+    document.querySelector("p").textContent = input;
     addImage();
     document.querySelector("textarea").value = "";
     document.querySelector("label").textContent = "don't believe everything your monsters tell you";
@@ -117,37 +120,55 @@ function backwards(string) {
             wordArray[i] = wordArray[i].split("").reverse().join("");
         }
     }
+    // use REDUCE
     wordArray = wordArray.join(" ");
     return wordArray;
 }
 
 function removeVowels(string) {
-    string = string.toLowerCase();
+    // string = string.toLowerCase();
+    // let newString = "";
+    // for (i = 0; i < string.length; i++) {
+    //     if (string[i] !== "a" && string[i] !== "e" && string[i] !== "i" && string[i] !== "o" && string[i] !== "u") {
+    //         newString += string[i];
+    //     }
+    // }
+    // return newString;
+    // 
+    // use REDUCE
     let newString = "";
-    for (i = 0; i < string.length; i++) {
-        if (string[i] !== "a" && string[i] !== "e" && string[i] !== "i" && string[i] !== "o" && string[i] !== "u") {
-            newString += string[i];
+    let array = string.toLowerCase().split("");
+    return array.reduce(function(letter) {
+        if (letter !== "a" && letter !== "e" && letter !== "i" && letter !== "o" && letter !== "u") {
+            newString += letter;
         }
-    }
-    return newString;
+        return newString;
+    }, newString);
 }
 
 function hackerSpeak(string) {
     string = string.toLowerCase();
     let newString = "";
     for (i = 0; i < string.length; i++) {
-        if (string[i] === "o") {
-            newString += "0";
-        } else if (string[i] === "i") {
-            newString += "1";
-        } else if (string[i] === "e") {
-            newString += "3";
-        } else if (string[i] === "a") {
-            newString += "4";
-        } else if (string[i] === "s") {
-            newString += "5";
-        } else {
-            newString += string[i];
+        switch (string[i]) {
+            case "o":
+                newString += "0";
+                break;
+            case "i":
+                newString += "1";
+                break;
+            case "e":
+                newString += "3";
+                break;
+            case "a":
+                newString += "4";
+                break;
+            case "s":
+                newString += "5";
+                break;
+            default:
+                newString += string[i];
+                break;
         }
     }
     return newString;
