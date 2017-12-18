@@ -7,15 +7,21 @@ function fetchMonsters() {
         .then(response => {
             monstersArray = response.combined;
             appendOptions(response);
+            appendAddOption();
         });
 }
 
 fetchMonsters();
 
+// Refactor out some functions
 document.querySelector(".fears").addEventListener("submit", event => {
     event.preventDefault();
     let input = document.querySelector("textarea").value;
     let monsterChoice = document.querySelector("select").value;
+    appendFears(monsterfy(monsterChoice, input));
+});
+
+function monsterfy(monsterChoice, input) {
     switch (monsterChoice) {
         case "scaly":
             input = backwards(input);
@@ -30,14 +36,20 @@ document.querySelector(".fears").addEventListener("submit", event => {
             input = replaceWithR(input);
             break;
     }
+    return input;
+}
+
+function appendFears(input) {
     document.querySelector("p").textContent = input;
     addImage();
     document.querySelector("textarea").value = "";
     document.querySelector("label").textContent = "don't believe everything your monsters tell you";
     document.querySelector("label").style.color = "#23e393";
-});
+}
 
-document.querySelector("select").addEventListener("change", event => {
+document.querySelector("select").addEventListener("change", displayMonsterForm);
+
+function displayMonsterForm(event) {
     if (event.target.value === "add your own...") {
         document.querySelector("img").src = "";
         document.querySelector("img").alt = "";
@@ -46,18 +58,15 @@ document.querySelector("select").addEventListener("change", event => {
     } else {
         document.querySelector(".add").style.display = "none";
     }
-});
-
-let counter = 3;
+}
 
 document.querySelector(".add").addEventListener("submit", event => {
     event.preventDefault();
     document.querySelector(".add").style.display = "none";
     const monsterData = new FormData(event.target);
-    counter++;
     addMonster({
         combined: {
-            id: counter,
+            id: monstersArray.length + 1,
             type: monsterData.get("name"),
             image_url: monsterData.get("url"),
         }
@@ -81,13 +90,12 @@ function addMonster(monster) {
 }
 
 function appendOptions(responseObject) {
-    responseObject.combined.map(item => {
+    responseObject.combined.forEach(item => {
         let option = document.createElement("option");
         let text = document.createTextNode(item.type);
         option.appendChild(text);
         document.querySelector("select").appendChild(option);
     });
-    appendAddOption();
 }
 
 function resetOptions() {
@@ -115,35 +123,21 @@ function addImage() {
 
 function backwards(string) {
     let wordArray = string.split(" ");
-    for (i = 0; i < wordArray.length; i++) {
-        if (i % 2 === 0) {
-            wordArray[i] = wordArray[i].split("").reverse().join("");
+    let newArray = [];
+    wordArray.reduce((newArray, word) => {
+        if (wordArray.indexOf(word) % 2 === 0) {
+          newArray.push(word.split("").reverse().join(""));
+        } else {
+          newArray.push(word);
         }
-    }
-    // use REDUCE
-    wordArray = wordArray.join(" ");
-    return wordArray;
+        return newArray;
+    }, newArray);
+    return newArray.join(" ");
 }
 
 function removeVowels(string) {
-    // string = string.toLowerCase();
-    // let newString = "";
-    // for (i = 0; i < string.length; i++) {
-    //     if (string[i] !== "a" && string[i] !== "e" && string[i] !== "i" && string[i] !== "o" && string[i] !== "u") {
-    //         newString += string[i];
-    //     }
-    // }
-    // return newString;
-    // 
-    // use REDUCE
-    let newString = "";
-    let array = string.toLowerCase().split("");
-    return array.reduce(function(letter) {
-        if (letter !== "a" && letter !== "e" && letter !== "i" && letter !== "o" && letter !== "u") {
-            newString += letter;
-        }
-        return newString;
-    }, newString);
+    let vowels = /[aeiou]/g;
+    return string.toLowerCase().replace(vowels, "");
 }
 
 function hackerSpeak(string) {
