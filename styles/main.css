@@ -49,8 +49,8 @@ textarea:focus {
 }
 
 select {
-   height: 3rem;
-   font-size: 1.5rem; 
+    height: 3rem;
+    font-size: 1.5rem; 
 }
 
 select:focus {
