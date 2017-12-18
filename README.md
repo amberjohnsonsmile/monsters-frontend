@@ -6,7 +6,7 @@ The Monsters app takes in a negative thought or fear and gives it a personality.
 
 [Backend code](https://github.com/amberjohnsonsmile/monsters-backend)
 
-![screenshot](screenshot.png)
+![screenshot](landing-screenshot.png)
 
 #### Galvanize Web App
 
