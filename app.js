@@ -3,17 +3,16 @@ const apiURL = "http://localhost:3000/combined";
 
 function fetchMonsters() {
     fetch(apiURL)
-        .then(response => response.json())
-        .then(response => {
-            monstersArray = response.combined;
-            appendOptions(response);
-            appendAddOption();
-        });
+    .then(response => response.json())
+    .then(response => {
+        monstersArray = response.combined;
+        appendOptions(response);
+        appendAddOption();
+    });
 }
 
 fetchMonsters();
 
-// Refactor out some functions
 document.querySelector(".fears").addEventListener("submit", event => {
     event.preventDefault();
     let input = document.querySelector("textarea").value;
@@ -126,9 +125,9 @@ function backwards(string) {
     let newArray = [];
     wordArray.reduce((newArray, word) => {
         if (wordArray.indexOf(word) % 2 === 0) {
-          newArray.push(word.split("").reverse().join(""));
+            newArray.push(word.split("").reverse().join(""));
         } else {
-          newArray.push(word);
+            newArray.push(word);
         }
         return newArray;
     }, newArray);

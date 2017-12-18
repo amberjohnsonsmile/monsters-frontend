@@ -3,6 +3,9 @@
 body {
     font-family: Poppins, sans-serif;
     box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 h1 {
@@ -18,19 +21,20 @@ a {
 }
 
 .fears {
+    width: 60%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
 }
 
 .fears label {
+    text-align: center;
     font-size: 1.5rem;
     padding-bottom: 1rem;
 }
 
 textarea {
-    height: 2rem;
-    width: 35rem;
+    height: 4.5rem;
     margin-bottom: 1rem;
     padding: 1rem;
     font-family: Poppins, sans-serif;
@@ -46,7 +50,6 @@ textarea:focus {
 
 select {
    height: 3rem;
-   width: 17rem;
    font-size: 1.5rem; 
 }
 
@@ -106,13 +109,14 @@ select:focus {
 .garble {
     display: flex;
     justify-content: center;
-    width: 100vw;
+    width: 60%;
     margin-top: 3rem;
 }
 
 img {
     display: none;
-    height: 20rem;
+    height: 16rem;
+    margin-right: 2rem;
 }
 
 p {
